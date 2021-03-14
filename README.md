@@ -1,2 +1,3 @@
 # vimrc
-vim无插件配置
+
+vim IDE for golang.
