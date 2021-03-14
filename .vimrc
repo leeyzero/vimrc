@@ -114,3 +114,106 @@ set autoread
 
 " 命令模式下，底部操作指令按下 Tab 键自动补全
 set wildmenu
+
+" Vundle 配置
+filetype off
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+  " In text files, always limit the width of text to 78 characters
+  autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+endif
+
+
+" 设置包括vundle和初始化相关的runtime path
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" 让vundle管理插件版本,必须
+Plugin 'VundleVim/Vundle.vim'
+
+" 请将安装插件的命令放在vundle#begin和vundle#end之间.
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'vim-airline/vim-airline'
+
+" plugins for golang
+Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+
+" YCM依赖的环境比较多，CentOS6u3需要重新编译Python和VIM，暂不开启
+" Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end() " 必须
+filetype plugin indent on " 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+
+" 简要帮助文档
+" :PluginList       - 列出所有已配置的插件
+" :PluginInstall    - 安装插件,追加 `!` 用以更新或使用 :PluginUpdate
+" :PluginSearch foo - 搜索 foo ; 追加 `!` 清除本地缓存
+" :PluginClean      - 清除未使用插件,需要确认; 追加 `!` 自动批准移除未使用插件
+" 查阅 :h vundle 获取更多细节和wiki以及FAQ
+
+" 主题
+colorscheme gotham256
+let g:gotham_airline_emphasised_insert = 0
+
+" airline
+let g:airline#extensions#tabline#enabled = 0
+
+" vim-go
+let g:go_fmt_command = "goimports" 
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+let g:godef_split=2
+
+" tagbar
+nmap <F9> :TagbarToggle<CR>
+let g:tagbar_width=25
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+" NERDTree
+map <F8> :NERDTreeToggle<CR>
+
+" 设置宽度
+let NERDTreeWinSize=25
