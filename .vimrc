@@ -24,7 +24,7 @@ set laststatus=2
 set  ruler
 
 " 支持鼠标
-set mouse=a
+" set mouse=a
 
 " 当前文本使用uf8编码
 set encoding=utf-8  
@@ -146,7 +146,7 @@ Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 
-" YCM依赖的环境比较多，CentOS6u3需要重新编译Python和VIM，暂不开启
+" YCM依赖的环境比较多，暂不开启
 " Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end() " 必须
@@ -182,7 +182,7 @@ let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
 " tagbar
-nmap <F9> :TagbarToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=25
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
@@ -213,7 +213,10 @@ let g:tagbar_type_go = {
 \ }
 
 " NERDTree
-map <F8> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " 设置宽度
 let NERDTreeWinSize=25
