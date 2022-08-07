@@ -131,22 +131,31 @@ endif
 
 
 " 设置包括vundle和初始化相关的runtime path
+" 请将安装插件的命令放在vundle#begin和vundle#end之间.
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " 让vundle管理插件版本,必须
+" https://github.com/VundleVim/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
-" 请将安装插件的命令放在vundle#begin和vundle#end之间.
+" https://github.com/whatyouhide/vim-gotham
 Plugin 'whatyouhide/vim-gotham'
+
+" https://github.com/vim-airline/vim-airline
 Plugin 'vim-airline/vim-airline'
 
-" plugins for golang
+" https://github.com/fatih/vim-go
 Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
 
-" YCM依赖的环境比较多，暂不开启
+" https://github.com/preservim/tagbar
+Plugin 'preservim/tagbar'
+
+" https://github.com/preservim/nerdtree
+Plugin 'preservim/nerdtree'
+
+" YCM依赖的环境比较多，按需开启
+" https://github.com/ycm-core/YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end() " 必须
@@ -183,7 +192,6 @@ let g:godef_split=2
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width=25
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -217,6 +225,3 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-
-" 设置宽度
-let NERDTreeWinSize=25
